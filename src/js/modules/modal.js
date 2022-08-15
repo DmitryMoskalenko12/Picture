@@ -1,6 +1,6 @@
 function modal() {
-
-  function bindModal(trigger, modal, close, closeOverlay = true) {
+let nonePressKeyBord = false;
+  function bindModal(trigger, modal, close, destroy = false) {
     const modalTrigger = document.querySelectorAll(trigger),
           modalDesign = document.querySelectorAll(modal),
           modalClose = document.querySelectorAll(close),
@@ -11,8 +11,14 @@ function modal() {
     modalDesign.forEach(modal=>{
       modal.style.display = 'block';
       document.body.style.overflow = 'hidden';
-      document.body.style.marginRight = `${scrolll}px`
+      document.body.style.marginRight = `${scrolll}px`;
+
+      nonePressKeyBord = true;
     })
+
+    if (destroy) {
+      document.querySelector('.fixed-gift').remove()
+    }
   }
 
   function closeModal() {
@@ -77,7 +83,7 @@ function modal() {
     function overlayHide() {
     modalDesign.forEach(popup=>{
     popup.addEventListener('click', (e)=>{
-      if (e.target === popup && closeOverlay) {
+      if (e.target === popup) {
         windows.forEach(item=>{
         item.style.display = 'none'
         document.body.style.overflow = '';
@@ -88,9 +94,21 @@ function modal() {
   })  
 }
 overlayHide()
+
+function showEndModal(selector) {
+  window.addEventListener('scroll', ()=>{
+    let adaptateToBrowswer = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
+    if (!nonePressKeyBord && (window.pageYOffset + document.documentElement.clientHeight >= adaptateToBrowswer)) {
+      document.querySelector(selector).click();
+    }
+  })
+  
+}
+showEndModal('.fixed-gift')
 }
   bindModal('.button-design','.popup-design','.popup-design .popup-close');
-  bindModal('.button-consultation','.popup-consultation','.popup-consultation .popup-close')
+  bindModal('.button-consultation','.popup-consultation','.popup-consultation .popup-close');
+  bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true )
 }
 
 export default modal;

@@ -954,8 +954,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function modal() {
+  var nonePressKeyBord = false;
+
   function bindModal(trigger, modal, close) {
-    var closeOverlay = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+    var destroy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
     var modalTrigger = document.querySelectorAll(trigger),
         modalDesign = document.querySelectorAll(modal),
         modalClose = document.querySelectorAll(close),
@@ -967,7 +969,12 @@ function modal() {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         document.body.style.marginRight = "".concat(scrolll, "px");
+        nonePressKeyBord = true;
       });
+
+      if (destroy) {
+        document.querySelector('.fixed-gift').remove();
+      }
     }
 
     function closeModal() {
@@ -1026,7 +1033,7 @@ function modal() {
     function overlayHide() {
       modalDesign.forEach(function (popup) {
         popup.addEventListener('click', function (e) {
-          if (e.target === popup && closeOverlay) {
+          if (e.target === popup) {
             windows.forEach(function (item) {
               item.style.display = 'none';
               document.body.style.overflow = '';
@@ -1038,10 +1045,23 @@ function modal() {
     }
 
     overlayHide();
+
+    function showEndModal(selector) {
+      window.addEventListener('scroll', function () {
+        var adaptateToBrowswer = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+
+        if (!nonePressKeyBord && window.pageYOffset + document.documentElement.clientHeight >= adaptateToBrowswer) {
+          document.querySelector(selector).click();
+        }
+      });
+    }
+
+    showEndModal('.fixed-gift');
   }
 
   bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
   bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
+  bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
