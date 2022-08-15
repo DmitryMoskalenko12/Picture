@@ -931,11 +931,14 @@ module.exports = g;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
+/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
+
 
 window.addEventListener("DOMContentLoaded", function () {
   'Use strict';
 
   Object(_modules_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  Object(_modules_slider__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', '.main-prev-btn', '.main-next-btn');
 });
 
 /***/ }),
@@ -1065,6 +1068,58 @@ function modal() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
+
+/***/ }),
+
+/***/ "./src/js/modules/slider.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/slider.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function slider(slides, prev, next) {
+  var slide = document.querySelectorAll(slides),
+      nextButton = document.querySelector(prev),
+      prevButton = document.querySelector(next);
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  function showSlides(n) {
+    if (n > slide.length) {
+      slideIndex = 1;
+    }
+
+    if (n < 1) {
+      slideIndex = slide.length;
+    }
+
+    slide.forEach(function (slide) {
+      slide.classList.add('hide');
+      slide.classList.remove('show');
+    });
+    slide[slideIndex - 1].classList.add('show');
+  }
+
+  function helpSlides(num) {
+    showSlides(slideIndex += num);
+  }
+
+  nextButton.addEventListener('click', function () {
+    helpSlides(1);
+  });
+  prevButton.addEventListener('click', function () {
+    helpSlides(-1);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (slider);
 
 /***/ })
 
