@@ -46,12 +46,24 @@ function modal() {
     return res;
   }
   
-  function showModalByTime() {
-    setTimeout(()=>{
-    showModal()
-    }, 30000)
-  }
-    showModalByTime()
+  function showModalByTime(selector, time) {
+    setTimeout(function() {
+        let display;
+
+        document.querySelectorAll('[data-modal]').forEach(item => {
+            if (getComputedStyle(item).display !== 'none') {
+                display = "block";
+            }
+        });
+
+        if (!display) {
+            document.querySelector(selector).style.display = 'block';
+            document.body.style.overflow = "hidden";
+            document.body.style.marginRight = `${scrolll}px`;
+        }
+    }, time);
+}
+    showModalByTime('.popup-consultation', 120000)
 
     function closeEsc() {
     document.addEventListener('keydown', (e)=>{
@@ -77,7 +89,8 @@ function modal() {
 }
 overlayHide()
 }
-  bindModal('.button-design','.popup-design','.popup-close')
+  bindModal('.button-design','.popup-design','.popup-design .popup-close');
+  bindModal('.button-consultation','.popup-consultation','.popup-consultation .popup-close')
 }
 
 export default modal;
