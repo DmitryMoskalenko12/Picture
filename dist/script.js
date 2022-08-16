@@ -938,7 +938,8 @@ window.addEventListener("DOMContentLoaded", function () {
   'Use strict';
 
   Object(_modules_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  Object(_modules_slider__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', '.main-prev-btn', '.main-next-btn');
+  Object(_modules_slider__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
+  Object(_modules_slider__WEBPACK_IMPORTED_MODULE_1__["default"])('.main-slider-item', 'vertical');
 });
 
 /***/ }),
@@ -1084,7 +1085,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
 
 
-function slider(slides, prev, next) {
+function slider(slides, dir, prev, next, parentSelector) {
   var slide = document.querySelectorAll(slides),
       nextButton = document.querySelector(prev),
       prevButton = document.querySelector(next);
@@ -1103,6 +1104,7 @@ function slider(slides, prev, next) {
     slide.forEach(function (slide) {
       slide.classList.add('hide');
       slide.classList.remove('show');
+      slide.classList.add('animated');
     });
     slide[slideIndex - 1].classList.add('show');
   }
@@ -1111,11 +1113,42 @@ function slider(slides, prev, next) {
     showSlides(slideIndex += num);
   }
 
-  nextButton.addEventListener('click', function () {
-    helpSlides(1);
+  try {
+    nextButton.addEventListener('click', function () {
+      helpSlides(1);
+      slide[slideIndex - 1].classList.remove('slideInRight');
+      slide[slideIndex - 1].classList.add('slideInLeft');
+    });
+    prevButton.addEventListener('click', function () {
+      helpSlides(-1);
+      slide[slideIndex - 1].classList.remove('slideInLeft');
+      slide[slideIndex - 1].classList.add('slideInRight');
+    });
+  } catch (error) {}
+
+  var move;
+
+  function activeMove() {
+    if (dir === 'vertical') {
+      move = setInterval(function () {
+        helpSlides(1);
+        slide[slideIndex - 1].classList.add('slideInDown');
+      }, 3000);
+    } else {
+      move = setInterval(function () {
+        helpSlides(1);
+        slide[slideIndex - 1].classList.remove('slideInRight');
+        slide[slideIndex - 1].classList.add('slideInLeft');
+      }, 3000);
+    }
+  }
+
+  activeMove();
+  slide[0].parentNode.addEventListener('mouseenter', function () {
+    clearInterval(move);
   });
-  prevButton.addEventListener('click', function () {
-    helpSlides(-1);
+  slide[0].parentNode.addEventListener('mouseleave', function () {
+    activeMove();
   });
 }
 
