@@ -47,6 +47,7 @@ function forms() {
     }
 
     form.forEach(item=>{
+      item.classList.add('animated', 'fadeIn')
       bindForm(item)
     })
 
@@ -55,7 +56,9 @@ function forms() {
         e.preventDefault();
 
         form.classList.add('animated', 'fadeOutUp');
-
+        document.querySelectorAll('.file_upload > div').forEach(item=>{
+          item.textContent = "Файл не выбран"
+        })
         setTimeout(()=>{
           form.style.display = 'none'
         }, 400);

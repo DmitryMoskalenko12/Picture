@@ -4879,6 +4879,7 @@ function forms() {
   }
 
   form.forEach(function (item) {
+    item.classList.add('animated', 'fadeIn');
     bindForm(item);
   });
 
@@ -4886,6 +4887,9 @@ function forms() {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       form.classList.add('animated', 'fadeOutUp');
+      document.querySelectorAll('.file_upload > div').forEach(function (item) {
+        item.textContent = "Файл не выбран";
+      });
       setTimeout(function () {
         form.style.display = 'none';
       }, 400);
@@ -4967,6 +4971,7 @@ function modal() {
 
     function showModal() {
       modalDesign.forEach(function (modal) {
+        modal.classList.add('animated', 'fadeIn');
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         document.body.style.marginRight = "".concat(scrolll, "px");

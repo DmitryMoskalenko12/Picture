@@ -9,6 +9,7 @@ let nonePressKeyBord = false;
 
   function showModal() {
     modalDesign.forEach(modal=>{
+      modal.classList.add('animated', 'fadeIn')
       modal.style.display = 'block';
       document.body.style.overflow = 'hidden';
       document.body.style.marginRight = `${scrolll}px`;
