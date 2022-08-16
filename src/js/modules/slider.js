@@ -1,4 +1,4 @@
-function slider(slides, dir, prev, next, parentSelector) {
+function slider(slides, dir, prev, next) {
   const slide = document.querySelectorAll(slides),
         nextButton = document.querySelector(prev),
         prevButton = document.querySelector(next);
@@ -61,10 +61,6 @@ slide[0].parentNode.addEventListener('mouseenter', ()=>{
 slide[0].parentNode.addEventListener('mouseleave', ()=>{
   activeMove()
 })
-
-
 }
-
-
 
 export default slider;
