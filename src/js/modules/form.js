@@ -1,6 +1,7 @@
 function forms() {
   const form = document.querySelectorAll('form'),
-        inputs = document.querySelectorAll('input');
+        inputs = document.querySelectorAll('input'),
+        uploadd = document.querySelectorAll('[name="upload"]');
     const message = {
       loading: 'Идет загрузка',
       success: 'Данные получены',
@@ -9,7 +10,29 @@ function forms() {
       imgfailure: 'assets/img/heart.png',
       spinner: 'assets/img/spinner.gif'
     } 
-    
+    inputs.forEach(input=>{
+      input.addEventListener('input', ()=>{
+        if (input.getAttribute('name') == 'phone') {
+          input.value = input.value.replace(/\D/ig, '')
+        }
+
+        if (input.getAttribute('name') == 'name') {
+          input.value = input.value.replace(/\d/ig, '')
+        }
+      })
+      
+    })
+
+    uploadd.forEach(item=>{
+      item.addEventListener('input', ()=>{
+        const words = item.files[0].name.split('.');
+        document.querySelectorAll('.file_upload > div').forEach(image=>{
+          words[0].length > 5 ? image.textContent = words[0].slice(0, 5) + '...' + words[1] : image.textContent = words[0] + '.' + words[1]
+        })
+        
+      })
+    })
+
   
     async function postData(url, data) {
       const res = await fetch(url, {
@@ -51,6 +74,13 @@ function forms() {
         div.append(text)
 
         const formData = new FormData(form);
+
+        const uploadd = document.querySelectorAll('[name="upload"]');
+        uploadd.forEach(item=>{
+          for(let key in item.files[0]){
+            formData.append(key, item.files[0][key])
+          }
+       })
         let path;
         form.closest('.popup-consultation') ? path = 'http://localhost:3000/getNoImage' : path = 'http://localhost:3000/getWithImage'
         const json = JSON.stringify(Object.fromEntries(formData.entries()))
