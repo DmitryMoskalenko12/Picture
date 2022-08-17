@@ -142,6 +142,23 @@
       "email": "dima.oksagen12@gmail.com",
       "message": "tgtrh",
       "id": 12
+    },
+    {
+      "upload": {},
+      "name": "vegy.jpg",
+      "phone": "380996117693",
+      "email": "",
+      "message": "",
+      "lastModified": "1584783869000",
+      "lastModifiedDate": "Sat Mar 21 2020 11:44:29 GMT+0200 (Восточная Европа, стандартное время)",
+      "webkitRelativePath": "",
+      "size": "367553",
+      "type": "image/jpeg",
+      "arrayBuffer": "function arrayBuffer() { [native code] }",
+      "slice": "function slice() { [native code] }",
+      "stream": "function stream() { [native code] }",
+      "text": "function text() { [native code] }",
+      "id": 13
     }
   ],
   "getNoImage": []
