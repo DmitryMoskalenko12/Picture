@@ -4812,6 +4812,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
 /* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/form */ "./src/js/modules/form.js");
 /* harmony import */ var _modules_inputLang__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/inputLang */ "./src/js/modules/inputLang.js");
+/* harmony import */ var _modules_mask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/mask */ "./src/js/modules/mask.js");
+
 
 
 
@@ -4825,6 +4827,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_form__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_inputLang__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="name"]');
   Object(_modules_inputLang__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="message"]');
+  Object(_modules_mask__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="phone"]');
 });
 
 /***/ }),
@@ -5033,6 +5036,42 @@ function setLang(input) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (setLang);
+
+/***/ }),
+
+/***/ "./src/js/modules/mask.js":
+/*!********************************!*\
+  !*** ./src/js/modules/mask.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
+
+function mask(selector) {
+  function createMask(event) {
+    var matrix = '+7 (___) __ __',
+        i = 0,
+        def = matrix.replace(/\D/ig, ''),
+        val = this.value.replace(/\D/ig, '');
+
+    if (def.length >= val.length) {
+      val = (_readOnlyError("val"), def);
+    }
+
+    this.value = matrix.replace(/./ig, function (a) {
+      return /[_\d]/.test(a) && i < val.length ? val.charAt((_readOnlyError("i"), i++)) : i >= val.length ? '' : a;
+    });
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (mask);
 
 /***/ }),
 
