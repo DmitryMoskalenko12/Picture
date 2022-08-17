@@ -3,6 +3,8 @@ import slider from './modules/slider';
 import forms from './modules/form';
 import setLang from './modules/inputLang';
 import mask from './modules/mask';
+import nextCard from './modules/showNextCard';
+
 window.addEventListener("DOMContentLoaded", ()=>{
   'Use strict'
 modal();
@@ -12,4 +14,5 @@ forms();
 setLang('[name="name"]');
 setLang('[name="message"]');
 mask('[name="phone"]');
+nextCard('.button-styles','.styles-2')
 })
