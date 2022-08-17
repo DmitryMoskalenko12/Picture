@@ -8,13 +8,14 @@ import calculate from './modules/calc';
 
 window.addEventListener("DOMContentLoaded", ()=>{
   'Use strict'
+  let price ={}
 modal();
 slider('.feedback-slider-item','horizontal', '.main-prev-btn', '.main-next-btn');
 slider('.main-slider-item', 'vertical');
-forms();
+forms(price);
 setLang('[name="name"]');
 setLang('[name="message"]');
 mask('[name="phone"]');
 nextCard('.button-styles','#styles .row');
-calculate('#size', '#material', '#options', '.promocode', '.calc-price')
+calculate('#size', '#material', '#options', '.promocode', '.calc-price', price)
 })

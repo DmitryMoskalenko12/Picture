@@ -1,4 +1,4 @@
-function calculate(size, material, plus, promo, place) {
+function calculate(size, material, plus, promo, place, price) {
   const blockSize = document.querySelector(size),
         blockMaterial = document.querySelector(material),
         blockPlus = document.querySelector(plus),
@@ -10,15 +10,16 @@ function calculate(size, material, plus, promo, place) {
           sum = Math.round((+blockSize.value) * (+blockMaterial.value) + (+blockPlus.value));
 
           if (blockSize.value !== '' && blockMaterial.value !== '') {
-            blockPlace.textContent = sum
+            blockPlace.textContent = `${sum}грн`
           }else if(blockSize.value == '' || blockMaterial.value == '' && blockPlus.value){
             blockPlace.textContent = 'Оберіть розмір картини та матеріал'
           } 
           if(blockPromo.value == 'IWANTPOPART' && blockSize.value !== '' && blockMaterial.value !== '' ){
-            blockPlace.textContent = Math.round((sum * 0.7))
+            blockPlace.textContent = `${Math.round((sum * 0.7))}грн`
           }
- 
+          price.price = sum;
         }
+      
         blockSize.addEventListener('change', calcSum);
         blockMaterial.addEventListener('change', calcSum);
         blockPlus.addEventListener('change', calcSum);

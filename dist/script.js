@@ -4965,15 +4965,16 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener("DOMContentLoaded", function () {
   'Use strict';
 
+  var price = {};
   Object(_modules_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
   Object(_modules_slider__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
   Object(_modules_slider__WEBPACK_IMPORTED_MODULE_1__["default"])('.main-slider-item', 'vertical');
-  Object(_modules_form__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_modules_form__WEBPACK_IMPORTED_MODULE_2__["default"])(price);
   Object(_modules_inputLang__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="name"]');
   Object(_modules_inputLang__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="message"]');
   Object(_modules_mask__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="phone"]');
   Object(_modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
-  Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price');
+  Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', price);
 });
 
 /***/ }),
@@ -4987,7 +4988,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function calculate(size, material, plus, promo, place) {
+function calculate(size, material, plus, promo, place, price) {
   var blockSize = document.querySelector(size),
       blockMaterial = document.querySelector(material),
       blockPlus = document.querySelector(plus),
@@ -4999,14 +5000,16 @@ function calculate(size, material, plus, promo, place) {
     sum = Math.round(+blockSize.value * +blockMaterial.value + +blockPlus.value);
 
     if (blockSize.value !== '' && blockMaterial.value !== '') {
-      blockPlace.textContent = sum;
+      blockPlace.textContent = "".concat(sum, "\u0433\u0440\u043D");
     } else if (blockSize.value == '' || blockMaterial.value == '' && blockPlus.value) {
       blockPlace.textContent = 'Оберіть розмір картини та матеріал';
     }
 
     if (blockPromo.value == 'IWANTPOPART' && blockSize.value !== '' && blockMaterial.value !== '') {
-      blockPlace.textContent = Math.round(sum * 0.7);
+      blockPlace.textContent = "".concat(Math.round(sum * 0.7), "\u0433\u0440\u043D");
     }
+
+    price.price = sum;
   }
 
   blockSize.addEventListener('change', calcSum);
@@ -5065,7 +5068,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function forms() {
+function forms(price) {
   var form = document.querySelectorAll('form'),
       inputs = document.querySelectorAll('input'),
       uploadd = document.querySelectorAll('[name="upload"]');
@@ -5154,10 +5157,15 @@ function forms() {
       text.textContent = message.loading;
       div.append(text);
       var formData = new FormData(form);
+
+      for (var key in price) {
+        formData.append(key, price[key]);
+      }
+
       var uploadd = document.querySelectorAll('[name="upload"]');
       uploadd.forEach(function (item) {
-        for (var key in item.files[0]) {
-          formData.append(key, item.files[0][key]);
+        for (var _key in item.files[0]) {
+          formData.append(_key, item.files[0][_key]);
         }
       });
       var path;

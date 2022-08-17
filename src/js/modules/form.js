@@ -1,4 +1,4 @@
-function forms() {
+function forms(price) {
   const form = document.querySelectorAll('form'),
         inputs = document.querySelectorAll('input'),
         uploadd = document.querySelectorAll('[name="upload"]');
@@ -78,6 +78,9 @@ function forms() {
 
         const formData = new FormData(form);
 
+        for(let key in price){
+          formData.append(key, price[key])
+        }
         const uploadd = document.querySelectorAll('[name="upload"]');
         uploadd.forEach(item=>{
           for(let key in item.files[0]){
