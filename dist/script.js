@@ -4954,6 +4954,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_inputLang__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/inputLang */ "./src/js/modules/inputLang.js");
 /* harmony import */ var _modules_mask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/mask */ "./src/js/modules/mask.js");
 /* harmony import */ var _modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showNextCard */ "./src/js/modules/showNextCard.js");
+/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
+
 
 
 
@@ -4971,7 +4973,49 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_inputLang__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="message"]');
   Object(_modules_mask__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="phone"]');
   Object(_modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
+  Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price');
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/calc.js":
+/*!********************************!*\
+  !*** ./src/js/modules/calc.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function calculate(size, material, plus, promo, place) {
+  var blockSize = document.querySelector(size),
+      blockMaterial = document.querySelector(material),
+      blockPlus = document.querySelector(plus),
+      blockPromo = document.querySelector(promo),
+      blockPlace = document.querySelector(place);
+  var sum = 0;
+
+  function calcSum() {
+    sum = Math.round(+blockSize.value * +blockMaterial.value + +blockPlus.value);
+
+    if (blockSize.value !== '' && blockMaterial.value !== '') {
+      blockPlace.textContent = sum;
+    } else if (blockSize.value == '' || blockMaterial.value == '' && blockPlus.value) {
+      blockPlace.textContent = 'Оберіть розмір картини та матеріал';
+    }
+
+    if (blockPromo.value == 'IWANTPOPART' && blockSize.value !== '' && blockMaterial.value !== '') {
+      blockPlace.textContent = Math.round(sum * 0.7);
+    }
+  }
+
+  blockSize.addEventListener('change', calcSum);
+  blockMaterial.addEventListener('change', calcSum);
+  blockPlus.addEventListener('change', calcSum);
+  blockPromo.addEventListener('input', calcSum);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (calculate);
 
 /***/ }),
 
@@ -5455,7 +5499,7 @@ function nextCard(trigger, parent) {
           title = _ref.title,
           link = _ref.link;
       var div = document.createElement('div');
-      div.classList.add('animated', 'fadeInUp', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+      div.classList.add('animated', 'fadeInDown', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
       div.innerHTML = "\n      <div class=styles-block>\n        <img src=".concat(src, " alt>\n        <h4>").concat(title, "</h4>\n        <a href=").concat(link, ">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n      </div>");
       document.querySelector(parent).append(div);
     });

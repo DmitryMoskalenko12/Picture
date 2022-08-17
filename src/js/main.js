@@ -4,6 +4,7 @@ import forms from './modules/form';
 import setLang from './modules/inputLang';
 import mask from './modules/mask';
 import nextCard from './modules/showNextCard';
+import calculate from './modules/calc';
 
 window.addEventListener("DOMContentLoaded", ()=>{
   'Use strict'
@@ -14,5 +15,6 @@ forms();
 setLang('[name="name"]');
 setLang('[name="message"]');
 mask('[name="phone"]');
-nextCard('.button-styles','#styles .row')
+nextCard('.button-styles','#styles .row');
+calculate('#size', '#material', '#options', '.promocode', '.calc-price')
 })

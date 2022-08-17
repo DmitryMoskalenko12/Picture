@@ -20,7 +20,7 @@ btn.addEventListener('click', function(){
   function createCard(res) {
     res.forEach(({src, title, link})=>{
       const div = document.createElement('div');
-      div.classList.add('animated', 'fadeInUp', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+      div.classList.add('animated', 'fadeInDown', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
       div.innerHTML = `
       <div class=styles-block>
         <img src=${src} alt>
