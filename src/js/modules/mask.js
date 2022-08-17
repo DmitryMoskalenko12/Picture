@@ -1,16 +1,44 @@
 function mask(selector) {
-  function createMask(event) {
-    const matrix = '+7 (___) __ __',
+
+  let setCursorPosition = (pos, elem) =>{
+   elem.focus();
+
+   if (elem.setSelectionRange) {
+    elem.setSelectionRange(pos, pos);
+   }else if(elem.createTextRange){
+    let range = elem.createTextRange();
+    range.collapse(true);
+    range.moveEnd('character', pos);
+    range.moveStart('character', pos);
+    range.select();
+   }
+  }
+  function numMask(event) {
+    let matrix = '+38 (___) ___ __ __',
     i = 0,
-    def = matrix.replace(/\D/ig, ''),
-    val = this.value.replace(/\D/ig, '');
+    def = matrix.replace(/\D/g, ''),
+    val = this.value.replace(/\D/g, '');
 
     if (def.length >= val.length) {
-      val = def
+      val = def;
     }
-    this.value = matrix.replace(/./ig, function(a) {
+    this.value = matrix.replace(/./g, function(a) {
       return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
     })
+
+    if (event.type === 'blur') {
+      if (this.value.length == 3) {
+        this.value = ''
+      }else{
+        setCursorPosition(this.value.length, this)
+      }
+    }
   }
+  let inputs = document.querySelectorAll(selector);
+  inputs.forEach(input=>{
+    input.addEventListener('input', numMask);
+    input.addEventListener('focus', numMask);
+    input.addEventListener('blur', numMask)
+  })
 }
 export default mask;

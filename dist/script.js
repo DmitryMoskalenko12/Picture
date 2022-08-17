@@ -5050,25 +5050,55 @@ function setLang(input) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
 /* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
 
 function mask(selector) {
-  function createMask(event) {
-    var matrix = '+7 (___) __ __',
+  var setCursorPosition = function setCursorPosition(pos, elem) {
+    elem.focus();
+
+    if (elem.setSelectionRange) {
+      elem.setSelectionRange(pos, pos);
+    } else if (elem.createTextRange) {
+      var range = elem.createTextRange();
+      range.collapse(true);
+      range.moveEnd('character', pos);
+      range.moveStart('character', pos);
+      range.select();
+    }
+  };
+
+  function numMask(event) {
+    var matrix = '+38 (___) ___ __ __',
         i = 0,
-        def = matrix.replace(/\D/ig, ''),
-        val = this.value.replace(/\D/ig, '');
+        def = matrix.replace(/\D/g, ''),
+        val = this.value.replace(/\D/g, '');
 
     if (def.length >= val.length) {
-      val = (_readOnlyError("val"), def);
+      val = def;
     }
 
-    this.value = matrix.replace(/./ig, function (a) {
-      return /[_\d]/.test(a) && i < val.length ? val.charAt((_readOnlyError("i"), i++)) : i >= val.length ? '' : a;
+    this.value = matrix.replace(/./g, function (a) {
+      return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
     });
+
+    if (event.type === 'blur') {
+      if (this.value.length == 3) {
+        this.value = '';
+      } else {
+        setCursorPosition(this.value.length, this);
+      }
+    }
   }
+
+  var inputs = document.querySelectorAll(selector);
+  inputs.forEach(function (input) {
+    input.addEventListener('input', numMask);
+    input.addEventListener('focus', numMask);
+    input.addEventListener('blur', numMask);
+  });
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (mask);
