@@ -14,5 +14,5 @@ forms();
 setLang('[name="name"]');
 setLang('[name="message"]');
 mask('[name="phone"]');
-nextCard('.button-styles','.styles-2')
+nextCard('.button-styles','#styles .row')
 })

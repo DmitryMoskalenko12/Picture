@@ -35,7 +35,7 @@ function forms() {
 
   
     async function postData(url, data) {
-      const res = await fetch(url, {
+      let res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
