@@ -4977,7 +4977,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_mask__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="phone"]');
   Object(_modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', price);
-  Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])('.portfolio-block', '.portfolio-menu', '[data-tab]', '.portfolio-no');
+  Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])('.portfolio-block', '.portfolio-menu', '.tab', '.portfolio-no');
 });
 
 /***/ }),

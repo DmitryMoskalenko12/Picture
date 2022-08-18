@@ -19,5 +19,5 @@ setLang('[name="message"]');
 mask('[name="phone"]');
 nextCard('.button-styles','#styles .row');
 calculate('#size', '#material', '#options', '.promocode', '.calc-price', price);
-filters('.portfolio-block', '.portfolio-menu', '[data-tab]', '.portfolio-no')
+filters('.portfolio-block', '.portfolio-menu', '.tab', '.portfolio-no')
 })
