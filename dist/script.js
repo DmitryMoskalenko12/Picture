@@ -4955,6 +4955,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_mask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/mask */ "./src/js/modules/mask.js");
 /* harmony import */ var _modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showNextCard */ "./src/js/modules/showNextCard.js");
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
+/* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
+
 
 
 
@@ -4975,6 +4977,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_mask__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="phone"]');
   Object(_modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', price);
+  Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])('.portfolio-block', '.portfolio-menu', '[data-tab]', '.portfolio-no');
 });
 
 /***/ }),
@@ -5019,6 +5022,85 @@ function calculate(size, material, plus, promo, place, price) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (calculate);
+
+/***/ }),
+
+/***/ "./src/js/modules/filter.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/filter.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function filters(pictures, wrap, tabs, no) {
+  var content = document.querySelectorAll(pictures),
+      wrapper = document.querySelector(wrap),
+      tab = document.querySelectorAll(tabs),
+      noportf = document.querySelector(no);
+
+  function hideActive() {
+    tab.forEach(function (active) {
+      active.classList.remove('active');
+    });
+  }
+
+  hideActive();
+
+  function showActive() {
+    var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    tab[i].classList.add('active');
+  }
+
+  showActive();
+  wrapper.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('tab')) {
+      tab.forEach(function (tab, i) {
+        if (e.target === tab) {
+          hideActive();
+          showActive(i);
+        }
+      });
+    }
+  });
+
+  function show(renge) {
+    tab.forEach(function (item, i) {
+      item.addEventListener('click', function () {
+        if (item.classList.contains('grandmother') || item.classList.contains('granddad')) {
+          noportf.style.display = 'block';
+        } else {
+          noportf.style.display = 'none';
+        }
+
+        if (item.classList.contains(renge)) {
+          content.forEach(function (cont) {
+            if (cont.classList.contains(renge)) {
+              cont.style.display = 'block';
+            } else {
+              cont.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+  }
+
+  show('all');
+  show('lovers');
+  show('chef');
+  show('girl');
+  show('guy');
+  show('grandmother');
+  show('granddad');
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (filters);
 
 /***/ }),
 

@@ -5,6 +5,7 @@ import setLang from './modules/inputLang';
 import mask from './modules/mask';
 import nextCard from './modules/showNextCard';
 import calculate from './modules/calc';
+import filters from './modules/filter'
 
 window.addEventListener("DOMContentLoaded", ()=>{
   'Use strict'
@@ -17,5 +18,6 @@ setLang('[name="name"]');
 setLang('[name="message"]');
 mask('[name="phone"]');
 nextCard('.button-styles','#styles .row');
-calculate('#size', '#material', '#options', '.promocode', '.calc-price', price)
+calculate('#size', '#material', '#options', '.promocode', '.calc-price', price);
+filters('.portfolio-block', '.portfolio-menu', '[data-tab]', '.portfolio-no')
 })
