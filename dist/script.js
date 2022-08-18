@@ -5127,6 +5127,7 @@ function filters(pictures, wrap, tabs, no) {
           content.forEach(function (cont) {
             if (cont.classList.contains(renge)) {
               cont.style.display = 'block';
+              cont.classList.add('animated', 'fadeIn');
             } else {
               cont.style.display = 'none';
             }

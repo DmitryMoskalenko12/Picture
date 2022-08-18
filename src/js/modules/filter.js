@@ -35,6 +35,7 @@ function show(renge) {
           content.forEach(cont=>{
             if (cont.classList.contains(renge)) {
               cont.style.display = 'block'
+              cont.classList.add('animated', 'fadeIn')
             }else{
               cont.style.display = 'none'
             }
