@@ -5095,13 +5095,12 @@ function filters(pictures, wrap, tabs, no) {
     });
   }
 
-  hideActive();
-
   function showActive() {
     var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     tab[i].classList.add('active');
   }
 
+  hideActive();
   showActive();
   wrapper.addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('tab')) {
@@ -5114,36 +5113,37 @@ function filters(pictures, wrap, tabs, no) {
     }
   });
 
-  function show(renge) {
-    tab.forEach(function (item, i) {
-      item.addEventListener('click', function () {
-        if (item.classList.contains('grandmother') || item.classList.contains('granddad')) {
-          noportf.style.display = 'block';
-        } else {
-          noportf.style.display = 'none';
-        }
+  function showPicture(selector) {
+    wrapper.addEventListener('click', function (e) {
+      if (e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')) {
+        noportf.style.display = 'block';
+        noportf.classList.add('animated', 'fadeIn');
+      } else {
+        noportf.style.display = 'none';
+        noportf.classList.remove('animated', 'fadeIn');
+      }
 
-        if (item.classList.contains(renge)) {
-          content.forEach(function (cont) {
-            if (cont.classList.contains(renge)) {
-              cont.style.display = 'block';
-              cont.classList.add('animated', 'fadeIn');
-            } else {
-              cont.style.display = 'none';
-            }
-          });
-        }
-      });
+      if (e.target.classList.contains(selector)) {
+        content.forEach(function (cont) {
+          if (cont.classList.contains(selector)) {
+            cont.style.display = 'block';
+            cont.classList.add('animated', 'fadeIn');
+          } else {
+            cont.style.display = 'none';
+            cont.classList.remove('animated', 'fadeIn');
+          }
+        });
+      }
     });
   }
 
-  show('all');
-  show('lovers');
-  show('chef');
-  show('girl');
-  show('guy');
-  show('grandmother');
-  show('granddad');
+  showPicture('all');
+  showPicture('lovers');
+  showPicture('chef');
+  showPicture('girl');
+  showPicture('guy');
+  showPicture('grandmother');
+  showPicture('granddad');
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (filters);
