@@ -4956,6 +4956,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showNextCard */ "./src/js/modules/showNextCard.js");
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
+/* harmony import */ var _modules_enterPicture__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/enterPicture */ "./src/js/modules/enterPicture.js");
+
 
 
 
@@ -4978,6 +4980,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', price);
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])('.portfolio-block', '.portfolio-menu', '.tab', '.portfolio-no');
+  Object(_modules_enterPicture__WEBPACK_IMPORTED_MODULE_8__["default"])();
 });
 
 /***/ }),
@@ -5022,6 +5025,48 @@ function calculate(size, material, plus, promo, place, price) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (calculate);
+
+/***/ }),
+
+/***/ "./src/js/modules/enterPicture.js":
+/*!****************************************!*\
+  !*** ./src/js/modules/enterPicture.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function picture() {
+  function showPicture(selector, sourse, size, stprice, fnprice) {
+    document.querySelector(selector).addEventListener('mouseenter', function (e) {
+      e.target.src = sourse;
+      document.querySelector(size).style.display = 'none';
+      document.querySelector(stprice).style.display = 'none';
+      document.querySelector(fnprice).style.display = 'none';
+    });
+  }
+
+  function hidePicture(selector, sourse, size, stprice, fnprice) {
+    document.querySelector(selector).addEventListener('mouseleave', function (e) {
+      e.target.src = sourse;
+      document.querySelector(size).style.display = 'block';
+      document.querySelector(stprice).style.display = 'block';
+      document.querySelector(fnprice).style.display = 'block';
+    });
+  }
+
+  showPicture('.size-1', 'assets/img/sizes-1-1.png', '.size', '.starting-price', '.final-price');
+  hidePicture('.size-1', 'assets/img/sizes-1.png', '.size', '.starting-price', '.final-price');
+  showPicture('.size-2', 'assets/img/sizes-2-1.png', '.size2', '.starting-price2', '.final-price2');
+  hidePicture('.size-2', 'assets/img/sizes-2.png', '.size2', '.starting-price2', '.final-price2');
+  showPicture('.size-3', 'assets/img/sizes-3-1.png', '.size3', '.starting-price3', '.final-price3');
+  hidePicture('.size-3', 'assets/img/sizes-3.png', '.size3', '.starting-price3', '.final-price3');
+  showPicture('.size-4', 'assets/img/sizes-4-1.png', '.size4', '.starting-price4', '.final-price4');
+  hidePicture('.size-4', 'assets/img/sizes-4.png', '.size4', '.starting-price4', '.final-price4');
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (picture);
 
 /***/ }),
 
