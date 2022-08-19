@@ -1,7 +1,7 @@
 function picture() {
 
 function showPicture(selector, sourse, size, stprice, fnprice) {
-  document.querySelector(selector).addEventListener('mouseenter', (e)=>{
+  document.querySelector(selector).addEventListener('mouseover', (e)=>{
     e.target.src = sourse
     document.querySelector(size).style.display = 'none'
     document.querySelector(stprice).style.display = 'none'
@@ -9,7 +9,7 @@ function showPicture(selector, sourse, size, stprice, fnprice) {
   })
 }
 function hidePicture(selector, sourse, size, stprice, fnprice) {
-  document.querySelector(selector).addEventListener('mouseleave', (e)=>{
+  document.querySelector(selector).addEventListener('mouseout', (e)=>{
     e.target.src = sourse
     document.querySelector(size).style.display = 'block'
     document.querySelector(stprice).style.display = 'block'

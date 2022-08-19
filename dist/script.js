@@ -4957,6 +4957,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
 /* harmony import */ var _modules_enterPicture__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/enterPicture */ "./src/js/modules/enterPicture.js");
+/* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
+
 
 
 
@@ -4981,7 +4983,47 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', price);
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])('.portfolio-block', '.portfolio-menu', '.tab', '.portfolio-no');
   Object(_modules_enterPicture__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading > span', '.accordion-block');
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/accordion.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/accordion.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function accordion(wrapper, content) {
+  var accordContent = document.querySelectorAll(content),
+      accordWrapper = document.querySelectorAll(wrapper);
+
+  function hideContent() {
+    accordContent.forEach(function (item) {
+      item.style.display = 'none';
+      item.classList.add('animated', 'fadeInUp');
+    });
+  }
+
+  hideContent();
+  accordWrapper.forEach(function (item, i) {
+    item.addEventListener('click', function (e) {
+      if (e.target.tagName === 'SPAN') {
+        accordContent[i].style.display = 'block';
+        item.style.color = '#c51abb';
+      }
+    });
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (accordion);
 
 /***/ }),
 
@@ -5039,7 +5081,7 @@ function calculate(size, material, plus, promo, place, price) {
 __webpack_require__.r(__webpack_exports__);
 function picture() {
   function showPicture(selector, sourse, size, stprice, fnprice) {
-    document.querySelector(selector).addEventListener('mouseenter', function (e) {
+    document.querySelector(selector).addEventListener('mouseover', function (e) {
       e.target.src = sourse;
       document.querySelector(size).style.display = 'none';
       document.querySelector(stprice).style.display = 'none';
@@ -5048,7 +5090,7 @@ function picture() {
   }
 
   function hidePicture(selector, sourse, size, stprice, fnprice) {
-    document.querySelector(selector).addEventListener('mouseleave', function (e) {
+    document.querySelector(selector).addEventListener('mouseout', function (e) {
       e.target.src = sourse;
       document.querySelector(size).style.display = 'block';
       document.querySelector(stprice).style.display = 'block';
