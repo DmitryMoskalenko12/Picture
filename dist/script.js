@@ -5004,22 +5004,21 @@ __webpack_require__.r(__webpack_exports__);
 function accordion(wrapper, content) {
   var accordContent = document.querySelectorAll(content),
       accordTrigger = document.querySelectorAll(wrapper);
-
-  function hideContent() {
-    accordContent.forEach(function (item) {
+  /* function hideContent() {
+    accordContent.forEach(item=>{
       item.style.display = 'none';
-      item.classList.add('animated', 'fadeInUp');
-    });
+      item.classList.add('animated', 'fadeInUp')
+    })
   }
+  hideContent() */
 
-  hideContent();
   accordTrigger.forEach(function (item, i) {
     item.addEventListener('click', function (e) {
       if (e.target.classList.toggle('active')) {
-        accordContent[i].style.display = 'block';
+        accordContent[i].style.cssText = "\n      max-height: ".concat(accordContent[i].scrollHeight, "px;\n      opacity: 100;\n      ");
         item.style.color = '#c51abb';
       } else {
-        accordContent[i].style.display = 'none';
+        accordContent[i].style.cssText = "\n      max-height: 0px;\n      opacity: 0;\n      ";
         item.style.color = 'inherit';
       }
     });
