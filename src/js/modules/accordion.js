@@ -1,6 +1,6 @@
 function accordion(wrapper, content) {
   const accordContent = document.querySelectorAll(content),
-        accordWrapper = document.querySelectorAll(wrapper);
+        accordTrigger = document.querySelectorAll(wrapper);
         
   function hideContent() {
     accordContent.forEach(item=>{
@@ -10,22 +10,18 @@ function accordion(wrapper, content) {
   }
   hideContent()
 
-  accordWrapper.forEach((item, i)=>{
+  accordTrigger.forEach((item, i)=>{
     item.addEventListener('click', (e)=>{
-    if (e.target.tagName === 'SPAN') {
+    if (e.target.classList.toggle('active')) {
       accordContent[i].style.display = 'block';
       item.style.color = '#c51abb';
-    }
-  })
-  }) 
-  accordContent.forEach((item, i)=>{
-    item.addEventListener('mouseleave', (e)=>{
-    if (e.target.tagName === 'DIV') {
+    }else{
       accordContent[i].style.display = 'none';
-      accordWrapper[i].style.color = 'inherit';
+      item.style.color = 'inherit';
+     
     }
   })
   }) 
-
+  
 }
 export default accordion;

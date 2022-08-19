@@ -5003,7 +5003,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function accordion(wrapper, content) {
   var accordContent = document.querySelectorAll(content),
-      accordWrapper = document.querySelectorAll(wrapper);
+      accordTrigger = document.querySelectorAll(wrapper);
 
   function hideContent() {
     accordContent.forEach(function (item) {
@@ -5013,19 +5013,14 @@ function accordion(wrapper, content) {
   }
 
   hideContent();
-  accordWrapper.forEach(function (item, i) {
+  accordTrigger.forEach(function (item, i) {
     item.addEventListener('click', function (e) {
-      if (e.target.tagName === 'SPAN') {
+      if (e.target.classList.toggle('active')) {
         accordContent[i].style.display = 'block';
         item.style.color = '#c51abb';
-      }
-    });
-  });
-  accordContent.forEach(function (item, i) {
-    item.addEventListener('mouseleave', function (e) {
-      if (e.target.tagName === 'DIV') {
+      } else {
         accordContent[i].style.display = 'none';
-        accordWrapper[i].style.color = 'inherit';
+        item.style.color = 'inherit';
       }
     });
   });
