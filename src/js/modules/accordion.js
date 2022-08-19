@@ -18,6 +18,14 @@ function accordion(wrapper, content) {
     }
   })
   }) 
+  accordContent.forEach((item, i)=>{
+    item.addEventListener('mouseleave', (e)=>{
+    if (e.target.tagName === 'DIV') {
+      accordContent[i].style.display = 'none';
+      accordWrapper[i].style.color = 'inherit';
+    }
+  })
+  }) 
 
 }
 export default accordion;

@@ -5021,6 +5021,14 @@ function accordion(wrapper, content) {
       }
     });
   });
+  accordContent.forEach(function (item, i) {
+    item.addEventListener('mouseleave', function (e) {
+      if (e.target.tagName === 'DIV') {
+        accordContent[i].style.display = 'none';
+        accordWrapper[i].style.color = 'inherit';
+      }
+    });
+  });
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (accordion);
