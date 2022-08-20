@@ -5081,33 +5081,40 @@ function calculate(size, material, plus, promo, place, price) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.slice */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
 function picture() {
-  function showPicture(selector, sourse, size, stprice, fnprice) {
-    document.querySelector(selector).addEventListener('mouseover', function (e) {
-      e.target.src = sourse;
-      document.querySelector(size).style.display = 'none';
-      document.querySelector(stprice).style.display = 'none';
-      document.querySelector(fnprice).style.display = 'none';
+  var blocks = document.querySelectorAll('.sizes-block');
+
+  function showPicture(block) {
+    var img = block.querySelector('img');
+    img.src = img.src.slice(0, -4) + '-1.png';
+    block.querySelectorAll('p:not(.sizes-hit)').forEach(function (item) {
+      item.style.display = 'none';
     });
   }
 
-  function hidePicture(selector, sourse, size, stprice, fnprice) {
-    document.querySelector(selector).addEventListener('mouseout', function (e) {
-      e.target.src = sourse;
-      document.querySelector(size).style.display = 'block';
-      document.querySelector(stprice).style.display = 'block';
-      document.querySelector(fnprice).style.display = 'block';
+  function hidePicture(block) {
+    var img = block.querySelector('img');
+    img.src = img.src.slice(0, -6) + '.png';
+    block.querySelectorAll('p').forEach(function (item) {
+      item.style.display = 'block';
     });
   }
 
-  showPicture('.size-1', 'assets/img/sizes-1-1.png', '.size', '.starting-price', '.final-price');
-  hidePicture('.size-1', 'assets/img/sizes-1.png', '.size', '.starting-price', '.final-price');
-  showPicture('.size-2', 'assets/img/sizes-2-1.png', '.size2', '.starting-price2', '.final-price2');
-  hidePicture('.size-2', 'assets/img/sizes-2.png', '.size2', '.starting-price2', '.final-price2');
-  showPicture('.size-3', 'assets/img/sizes-3-1.png', '.size3', '.starting-price3', '.final-price3');
-  hidePicture('.size-3', 'assets/img/sizes-3.png', '.size3', '.starting-price3', '.final-price3');
-  showPicture('.size-4', 'assets/img/sizes-4-1.png', '.size4', '.starting-price4', '.final-price4');
-  hidePicture('.size-4', 'assets/img/sizes-4.png', '.size4', '.starting-price4', '.final-price4');
+  blocks.forEach(function (item) {
+    item.addEventListener('mouseover', function () {
+      showPicture(item);
+    });
+    item.addEventListener('mouseout', function () {
+      hidePicture(item);
+    });
+  });
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (picture);
