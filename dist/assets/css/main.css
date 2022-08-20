@@ -109,6 +109,10 @@ h4 {
 .header .container {
   padding: 0;
 }
+
+.header .burger{
+  display: none;
+}
 .header .burger {
   margin-right: -1rem;
   background-color: #c51abb;
@@ -1387,8 +1391,9 @@ h4 {
     margin-right: -9rem;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 991px ) {
   .header .burger {
+    display: block;
     cursor: pointer;
   }
   .header .burger span {
