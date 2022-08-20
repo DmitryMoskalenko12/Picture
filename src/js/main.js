@@ -9,6 +9,8 @@ import filters from './modules/filter';
 import picture from './modules/enterPicture';
 import accordion from './modules/accordion';
 import burger from './modules/burger';
+import scrolling from './modules/scrolling';
+
 
 window.addEventListener("DOMContentLoaded", ()=>{
   'Use strict'
@@ -26,4 +28,5 @@ filters('.portfolio-block', '.portfolio-menu', '.tab', '.portfolio-no');
 picture();
 accordion('.accordion-heading > span', '.accordion-block');
 burger();
+scrolling('.pageup')
 })
