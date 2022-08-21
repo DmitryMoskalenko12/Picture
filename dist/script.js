@@ -4960,6 +4960,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
 /* harmony import */ var _modules_scrolling__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/scrolling */ "./src/js/modules/scrolling.js");
+/* harmony import */ var _modules_drop__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/drop */ "./src/js/modules/drop.js");
+
 
 
 
@@ -4990,6 +4992,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading > span', '.accordion-block');
   Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])();
   Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])('.pageup');
+  Object(_modules_drop__WEBPACK_IMPORTED_MODULE_12__["default"])();
 });
 
 /***/ }),
@@ -5109,6 +5112,87 @@ function calculate(size, material, plus, promo, place, price) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (calculate);
+
+/***/ }),
+
+/***/ "./src/js/modules/drop.js":
+/*!********************************!*\
+  !*** ./src/js/modules/drop.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.slice */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.function.name */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.split */ "./node_modules/core-js/modules/es.string.split.js");
+/* harmony import */ var core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+function drop() {
+  var files = document.querySelectorAll('[name="upload"]');
+  ['dragenter', 'dragleave', 'dragover', 'drop'].forEach(function (eventD) {
+    files.forEach(function (input) {
+      input.addEventListener(eventD, cancelEventPrevent, false);
+    });
+  });
+
+  function cancelEventPrevent(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  function areaColor(item) {
+    item.closest('.file_upload').style.border = '5px solid blue';
+    item.closest('.file_upload').style.backgroundColor = 'rgba(0, 0, 0, .7)';
+  }
+
+  function noAreaColor(item) {
+    item.closest('.file_upload').style.border = 'none';
+
+    if (item.closest('.main')) {
+      item.closest('.file_upload').style.backgroundColor = '#f7e7e6';
+    } else if (item.closest('.popup-design')) {
+      item.closest('.file_upload').style.backgroundColor = '#ededed';
+    } else if (item.closest('.calc')) {
+      item.closest('.file_upload').style.backgroundColor = '#fff';
+    }
+  }
+
+  ['dragenter', 'dragover'].forEach(function (eventD) {
+    files.forEach(function (input) {
+      input.addEventListener(eventD, function () {
+        return areaColor(input);
+      }, false);
+    });
+  });
+  ['dragleave', 'drop'].forEach(function (eventD) {
+    files.forEach(function (input) {
+      input.addEventListener(eventD, function () {
+        return noAreaColor(input);
+      }, false);
+    });
+  });
+  files.forEach(function (item) {
+    item.addEventListener('drop', function (e) {
+      item.files = e.dataTransfer.files;
+      var words = item.files[0].name.split('.');
+      document.querySelectorAll('.file_upload > div').forEach(function (image) {
+        words[0].length > 5 ? image.textContent = words[0].slice(0, 5) + '...' + words[1] : image.textContent = words[0] + '.' + words[1];
+      });
+    });
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (drop);
 
 /***/ }),
 

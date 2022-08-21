@@ -10,6 +10,7 @@ import picture from './modules/enterPicture';
 import accordion from './modules/accordion';
 import burger from './modules/burger';
 import scrolling from './modules/scrolling';
+import drop from './modules/drop';
 
 
 window.addEventListener("DOMContentLoaded", ()=>{
@@ -28,5 +29,6 @@ filters('.portfolio-block', '.portfolio-menu', '.tab', '.portfolio-no');
 picture();
 accordion('.accordion-heading > span', '.accordion-block');
 burger();
-scrolling('.pageup')
+scrolling('.pageup');
+drop();
 })

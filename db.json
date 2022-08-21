@@ -20,6 +20,23 @@
       "email": "",
       "message": "",
       "id": 3
+    },
+    {
+      "upload": {},
+      "name": "favicon.ico",
+      "phone": "+38 (099) 611 76 93",
+      "email": "",
+      "message": "",
+      "lastModified": "1660222573331",
+      "lastModifiedDate": "Thu Aug 11 2022 15:56:13 GMT+0300 (Восточная Европа, летнее время)",
+      "webkitRelativePath": "",
+      "size": "1150",
+      "type": "image/x-icon",
+      "arrayBuffer": "function arrayBuffer() { [native code] }",
+      "slice": "function slice() { [native code] }",
+      "stream": "function stream() { [native code] }",
+      "text": "function text() { [native code] }",
+      "id": 4
     }
   ],
   "getNoImage": []
