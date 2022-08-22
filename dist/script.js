@@ -4989,7 +4989,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', price);
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])('.portfolio-block', '.portfolio-menu', '.tab', '.portfolio-no');
   Object(_modules_enterPicture__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading > span', '.accordion-block');
+  Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading');
   Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])();
   Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])('.pageup');
   Object(_modules_drop__WEBPACK_IMPORTED_MODULE_12__["default"])();
@@ -5010,28 +5010,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
 
 
-function accordion(wrapper, content) {
-  var accordContent = document.querySelectorAll(content),
-      accordTrigger = document.querySelectorAll(wrapper);
-  /* function hideContent() {
-    accordContent.forEach(item=>{
-      item.style.display = 'none';
-      item.classList.add('animated', 'fadeInUp')
-    })
-  }
-  hideContent() */
+function accordion(wrapper) {
+  var accordTrigger = document.querySelectorAll(wrapper);
+  accordTrigger.forEach(function (item) {
+    item.addEventListener('click', function () {
+      this.classList.toggle('active');
+      this.nextElementSibling.classList.toggle('active-content');
 
-  accordTrigger.forEach(function (item, i) {
-    item.addEventListener('click', function (e) {
-      if (e.target.classList.toggle('active')) {
-        accordContent[i].style.cssText = "\n      max-height: ".concat(accordContent[i].scrollHeight, "px;\n      opacity: 100;\n      ");
-        item.style.color = '#c51abb';
+      if (this.classList.contains('active')) {
+        this.style.color = '#c51abb';
+        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 80 + 'px';
       } else {
-        accordContent[i].style.cssText = "\n      max-height: 0px;\n      opacity: 0;\n      ";
-        item.style.color = 'inherit';
+        this.style.color = 'inherit';
+        this.nextElementSibling.style.maxHeight = '0px';
       }
+
+      ;
     });
   });
+  /* accordTrigger.forEach((item, i)=>{
+    item.addEventListener('click', (e)=>{
+    if (e.target.classList.toggle('active')) {
+      
+      accordContent[i].style.cssText = `
+      max-height: ${accordContent[i].scrollHeight}px;
+      opacity: 100;
+      `;
+      item.style.color = '#c51abb';
+    }else{
+      accordContent[i].style.cssText = `
+      max-height: 0px;
+      opacity: 0;
+      `;
+      item.style.color = 'inherit';
+    }
+  })
+  }) */
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (accordion);
@@ -5094,7 +5108,7 @@ function calculate(size, material, plus, promo, place, price) {
 
     if (blockSize.value !== '' && blockMaterial.value !== '') {
       blockPlace.textContent = "".concat(sum, "\u0433\u0440\u043D");
-    } else if (blockSize.value == '' || blockMaterial.value == '' && blockPlus.value) {
+    } else if (blockSize.value == '' || blockMaterial.value == '') {
       blockPlace.textContent = 'Оберіть розмір картини та матеріал';
     }
 
@@ -5322,28 +5336,23 @@ function filters(pictures, wrap, tabs, no) {
       wrapper = document.querySelector(wrap),
       tab = document.querySelectorAll(tabs),
       noportf = document.querySelector(no);
-
-  function hideActive() {
-    tab.forEach(function (active) {
+  /* function hideActive() {
+    tab.forEach(active=>{
       active.classList.remove('active');
-    });
+    })
   }
-
-  function showActive() {
-    var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  function showActive(i = 0) {
     tab[i].classList.add('active');
   }
-
   hideActive();
-  showActive();
+  showActive(); */
+
   wrapper.addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('tab')) {
-      tab.forEach(function (tab, i) {
-        if (e.target === tab) {
-          hideActive();
-          showActive(i);
-        }
+      tab.forEach(function (item) {
+        item.classList.remove('active');
       });
+      e.target.classList.add('active');
     }
   });
 
@@ -5962,6 +5971,12 @@ function nextCard(trigger, parent) {
   btn.addEventListener('click', function () {
     getResource('http://localhost:3004/styles').then(function (res) {
       createCard(res);
+    }).catch(function () {
+      var div = document.createElement('div');
+      div.classList.add('animated', 'fadeInDown', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+      div.style.cssText = "\n    width: 551px;\n    min-height: 40px;\n    text-align: center;\n    font-weight: 30px;\n    color: black;\n    font-size: 30px;\n    margin: 0 300px;";
+      div.textContent = 'Виникла помилка завантаження карток';
+      document.querySelector(parent).append(div);
     });
     this.remove();
   });

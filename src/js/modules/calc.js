@@ -11,7 +11,7 @@ function calculate(size, material, plus, promo, place, price) {
 
           if (blockSize.value !== '' && blockMaterial.value !== '') {
             blockPlace.textContent = `${sum}грн`
-          }else if(blockSize.value == '' || blockMaterial.value == '' && blockPlus.value){
+          }else if(blockSize.value == '' || blockMaterial.value == ''){
             blockPlace.textContent = 'Оберіть розмір картини та матеріал'
           } 
           if(blockPromo.value == 'IWANTPOPART' && blockSize.value !== '' && blockMaterial.value !== '' ){

@@ -15,6 +15,20 @@ btn.addEventListener('click', function(){
   .then((res)=>{
    createCard(res)
   })
+  .catch(()=>{
+    const div = document.createElement('div');
+    div.classList.add('animated', 'fadeInDown', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+    div.style.cssText = `
+    width: 551px;
+    min-height: 40px;
+    text-align: center;
+    font-weight: 30px;
+    color: black;
+    font-size: 30px;
+    margin: 0 300px;`
+    div.textContent = 'Виникла помилка завантаження карток'
+    document.querySelector(parent).append(div)
+  })
   this.remove()
 })
   function createCard(res) {
