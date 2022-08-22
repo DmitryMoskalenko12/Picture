@@ -5628,7 +5628,7 @@ function mask(selector) {
   };
 
   function numMask(event) {
-    var matrix = '+38 (___) ___ __ __',
+    var matrix = '+38 (___)-(___)-__ __',
         i = 0,
         def = matrix.replace(/\D/g, ''),
         val = this.value.replace(/\D/g, '');
