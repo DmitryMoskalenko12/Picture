@@ -1,7 +1,7 @@
 function mask(selector) {
 
   let setCursorPosition = (pos, elem) =>{
-   elem.focus();
+   /* elem.focus(); */
 
    if (elem.setSelectionRange) {
     elem.setSelectionRange(pos, pos);

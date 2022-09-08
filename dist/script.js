@@ -5623,8 +5623,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function mask(selector) {
   var setCursorPosition = function setCursorPosition(pos, elem) {
-    elem.focus();
-
+    /* elem.focus(); */
     if (elem.setSelectionRange) {
       elem.setSelectionRange(pos, pos);
     } else if (elem.createTextRange) {
