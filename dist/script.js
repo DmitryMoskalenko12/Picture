@@ -4988,7 +4988,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_showNextCard__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', price);
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])('.portfolio-block', '.portfolio-menu', '.tab', '.portfolio-no');
-  Object(_modules_enterPicture__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_modules_enterPicture__WEBPACK_IMPORTED_MODULE_8__["default"])('.sizes-block');
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading');
   Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])();
   Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])('.pageup');
@@ -5285,8 +5285,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function picture() {
-  var blocks = document.querySelectorAll('.sizes-block');
+function picture(selector) {
+  var blocks = document.querySelectorAll(selector);
 
   function showPicture(block) {
     var img = block.querySelector('img');

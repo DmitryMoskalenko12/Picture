@@ -1,6 +1,5 @@
 function drop() {
   const files = document.querySelectorAll('[name="upload"]');
-
   ['dragenter', 'dragleave', 'dragover', 'drop'].forEach(eventD=>{
     files.forEach(input=>{
       input.addEventListener(eventD, cancelEventPrevent, false);

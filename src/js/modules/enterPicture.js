@@ -1,5 +1,5 @@
-function picture() {
-  const blocks = document.querySelectorAll('.sizes-block');
+function picture(selector) {
+  const blocks = document.querySelectorAll(selector);
         
 function showPicture(block) {
   const img = block.querySelector('img');
@@ -23,7 +23,7 @@ blocks.forEach(item=>{
   });
   item.addEventListener('mouseout', ()=>{
     hidePicture(item)
-  })
+  });
 })
 
 }
