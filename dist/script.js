@@ -5215,6 +5215,8 @@ function drop() {
   files.forEach(function (item) {
     item.addEventListener('drop', function (e) {
       item.files = e.dataTransfer.files;
+      var words = item.files[0].name.split('.');
+      words[0].length > 5 ? item.previousElementSibling.textContent = words[0].slice(0, 5) + '...' + words[1] : item.previousElementSibling.textContent = words[0] + '.' + words[1];
 
       if (item.closest('.main')) {
         function postData(url, data) {
@@ -5248,10 +5250,6 @@ function drop() {
           });
         }
 
-        var words = item.files[0].name.split('.');
-        document.querySelectorAll('.file_upload > div').forEach(function (image) {
-          words[0].length > 5 ? image.textContent = words[0].slice(0, 5) + '...' + words[1] : image.textContent = words[0] + '.' + words[1];
-        });
         var formData = new FormData();
 
         for (var key in item.files[0]) {

@@ -41,6 +41,10 @@ function drop() {
     item.addEventListener('drop', (e)=>{
     item.files = e.dataTransfer.files;
 
+
+    const words = item.files[0].name.split('.');
+    words[0].length > 5 ? item.previousElementSibling.textContent = words[0].slice(0, 5) + '...' + words[1] : item.previousElementSibling.textContent = words[0] + '.' + words[1]
+    
     if (item.closest('.main')) {
       async function postData(url, data) {
         let res = await fetch(url, {
@@ -53,11 +57,7 @@ function drop() {
   
         return await res.json()
       }
-
-      const words = item.files[0].name.split('.');
-        document.querySelectorAll('.file_upload > div').forEach(image=>{
-        words[0].length > 5 ? image.textContent = words[0].slice(0, 5) + '...' + words[1] : image.textContent = words[0] + '.' + words[1]
-    });
+    
       const formData = new FormData();
         for(let key in item.files[0]){
           formData.append(key, item.files[0][key])
